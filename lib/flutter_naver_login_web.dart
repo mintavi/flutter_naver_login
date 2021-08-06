@@ -66,13 +66,33 @@ class FlutterNaverLoginPlugin {
     }
     var naverIdLogin = new naver_id_login(_clientId!, _callbackUrl!);
     var state = naverIdLogin.getUniqState();
-    naverIdLogin.setDomain(html.window.location.hostname!);
+    print("state: $state");
+    naverIdLogin.setDomain("." + html.window.location.hostname!);
+    print("domain: ${"." + html.window.location.hostname!}");
     naverIdLogin.setPopup(true);
     naverIdLogin.setState(state);
 
+    print("init_naver_id_login()");
     naverIdLogin.init_naver_id_login();
 
-    Map<dynamic, dynamic> res = {};
+    Map<dynamic, dynamic> res = {
+      "status": "loggedIn",
+      "accessToken": {
+        "accessToken": "IThinkIAmAnAccessToken",
+        "expiresAt": "WHAT",
+        "tokenType": "TypeMe"
+      },
+      "account": {
+        "nickname": "닉네임",
+        "id": "MyId",
+        "name": "이름",
+        "email": "MyEmail@email.com",
+        "gender": "One of F and M",
+        "age": "20, I Wish",
+        "birthday": "birthday",
+        "profileImage": "image.jpeg",
+      }
+    };
     print("res");
     print(res);
     return res;
