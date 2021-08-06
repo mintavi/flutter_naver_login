@@ -67,8 +67,15 @@ class FlutterNaverLoginPlugin {
     var naverIdLogin = new naver_id_login(_clientId!, _callbackUrl!);
     var state = naverIdLogin.getUniqState();
     naverIdLogin.setDomain(html.window.location.hostname!);
+    naverIdLogin.setPopup(true);
     naverIdLogin.setState(state);
+
     naverIdLogin.init_naver_id_login();
+
+    Map<dynamic, dynamic> res = {};
+    print("res");
+    print(res);
+    return res;
   }
 
   _logOut() {
