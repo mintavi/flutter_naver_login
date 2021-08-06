@@ -6,7 +6,7 @@ import 'web/naver_login.dart';
 
 class FlutterNaverLoginPlugin {
   final String _clientId = "5olG0LvBwCIDpaaFXOZH";
-  final String _callbackUrl = "www.naver.com";
+  final String _callbackUrl = "www.google.com";
 
   static initialize() async {
     const String naverApiUrl = 'https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js';
@@ -48,10 +48,10 @@ class FlutterNaverLoginPlugin {
     // init
     var naverIdLogin = new naver_id_login(_clientId, _callbackUrl);
     var state = naverIdLogin.getUniqState();
-    naverIdLogin.setDomain("YOUR_SERVICE_URL");
+    naverIdLogin.setDomain(".fanmeet-dev.rftap.net");
     naverIdLogin.setState(state);
     naverIdLogin.setPopup(true);
-    naverIdLogin.init_naver_id_login();
+    // naverIdLogin.init_naver_id_login();
   }
 
   _logOut() {
