@@ -75,7 +75,7 @@ class FlutterNaverLoginPlugin {
     print("init_naver_id_login()");
     naverIdLogin.init_naver_id_login();
 
-    Map<dynamic, dynamic> res = {
+    Map<String, dynamic> res = {
       "status": "loggedIn",
       "accessToken": {
         "accessToken": "IThinkIAmAnAccessToken",
