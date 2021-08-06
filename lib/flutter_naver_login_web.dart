@@ -64,19 +64,19 @@ class FlutterNaverLoginPlugin {
       html.window.alert("네이버 아이디 로그인 callback Url이 필요합니다.");
       return;
     }
-
     var naverIdLogin = new naver_id_login(_clientId!, _callbackUrl!);
     var state = naverIdLogin.getUniqState();
-    naverIdLogin.setDomain(".fanmeet-dev.rftap.net");
+    naverIdLogin.setDomain(html.window.location.hostname!);
     naverIdLogin.setState(state);
-    naverIdLogin.setPopup(true);
     naverIdLogin.init_naver_id_login();
   }
 
   _logOut() {
-    const String logoutUrl = "http://nid.naver.com/nidlogin.logout";
-    html.window.open(logoutUrl, 'new tab');
-    html.window.close();
+    print("in _logOut");
+    const String logoutUrl = "http://nid.naver.com/nidlogin.logout?";
+    var loginTab = html.window.open(logoutUrl, 'new tab');
+    // do something
+    loginTab.close();
   }
 
   _getCurrentAccount() {
