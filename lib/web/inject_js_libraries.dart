@@ -19,7 +19,7 @@ Future<void> injectJSLibraries(
   final List<Future<void>> loading = <Future<void>>[];
   final List<html.HtmlElement> tags = <html.HtmlElement>[];
 
-  final html.Element targetElement = target ?? html.querySelector('head')!;
+  final html.Element targetElement = target ?? html.querySelector('body')!;
 
   libraries.forEach((String library) {
     final html.ScriptElement script = html.ScriptElement()
