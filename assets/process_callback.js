@@ -16,7 +16,25 @@ var jsCallback = function() {
     if (opener == null) {
         window.open("http://localhost:10000/#/login", "opener");
     }
-    // opener.postMessage(result, "http://localhost:10000/#/login");
+    
+    var result = {
+        "status": nil.getOauthStatus(),
+        "accessToken": nil.getAccessToken(),
+        "errorMessage": nil.getOauthMessage(),
+        "account": nil.inner_profileParams,
+        // {
+            // "age": nil.getProfileData("age"),
+            // "birthday": nil.getProfileData("birthday"),
+            // "email": nil.getProfileData("email"),
+            // "enc_id": nil.getProfileData("enc_id"),
+            // "gender": nil.getProfileData("gender"),
+            // "id": nil.getProfileData("id"),
+            // "nickname": nil.getProfileData("nickname"),
+            // "profile_image": nil.getProfileData("profile_image"),
+        // },
+    }
+    
+    opener.postMessage(result, "http://localhost:10000/#/login");
     // opener.postMessage(result, "*");
-    window.close();
+    // window.close();
 }
