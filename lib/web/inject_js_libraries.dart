@@ -35,16 +35,16 @@ Future<void> injectJSLibraries(
   return Future.wait(loading);
 }
 
-Future<void> injectJSText(String jsText, {html.HtmlElement? target,}) {
-  final html.Element targetElement = target ?? html.querySelector('head')!;
+// Future<void> injectJSText(String jsText, {html.HtmlElement? target,}) {
+//   final html.Element targetElement = target ?? html.querySelector('head')!;
 
-  final html.ScriptElement script = html.ScriptElement()
-    ..async = true
-    ..defer = true
-    ..innerHtml = jsText;
+//   final html.ScriptElement script = html.ScriptElement()
+//     ..async = true
+//     ..defer = true
+//     ..innerHtml = jsText;
 
-  final Future<void> loading = script.onLoad.first;
+//   final Future<void> loading = script.onLoad.first;
 
-  targetElement.children.add(script);
-  return loading;
-}
+//   targetElement.children.add(script);
+//   return loading;
+// }

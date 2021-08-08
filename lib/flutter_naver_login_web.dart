@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:html' as html;
-import 'package:js/js.dart' as js;
 import 'package:flutter/services.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'web/inject_js_libraries.dart';
@@ -13,10 +12,9 @@ class FlutterNaverLoginPlugin {
   static initialize() async {
     const String naverApiUrl = 'https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js';
     const String jQueryUrl = 'http://code.jquery.com/jquery-1.11.3.min.js';
-    String jsText = await rootBundle.loadString('assets/process_callback.js');
+    const String processCallbackUrl = 'assets/packages/flutter_naver_login/assets/process_callback.js';
     
-    await injectJSLibraries([naverApiUrl, jQueryUrl]);
-    await injectJSText(jsText);
+    await injectJSLibraries([naverApiUrl, jQueryUrl, processCallbackUrl]);
 
     _clientId = html.window.document.querySelector("meta[name='naver-login-client-id']")
                     ?.getAttribute("content");

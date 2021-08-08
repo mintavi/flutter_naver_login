@@ -32,8 +32,7 @@ class FlutterNaverLoginPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   private val METHOD_LOG_IN = "logIn"
   private val METHOD_LOG_OUT = "logOut"
-  private val METHOD_GET_ACCOUNT = "getCurrentAcount"
-
+  private val METHOD_GET_ACCOUNT = "getCurrentAccount"
   private val METHOD_GET_TOKEN = "getCurrentAccessToken"
 
   /**
