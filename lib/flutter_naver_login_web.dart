@@ -10,11 +10,11 @@ class FlutterNaverLoginPlugin {
   static late final String? _callbackUrl;
 
   static initialize() async {
-    const String processCallbackUrl = 'assets/packages/flutter_naver_login/assets/process_callback.js';
     const String jQueryUrl = 'http://code.jquery.com/jquery-1.11.3.min.js';
     const String naverApiUrl = 'https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js';
+    const String processCallbackUrl = 'assets/packages/flutter_naver_login/assets/process_callback.js';
     
-    await injectJSLibraries([processCallbackUrl, jQueryUrl, naverApiUrl]);
+    await injectJSLibraries([jQueryUrl, naverApiUrl, processCallbackUrl]);
 
     _clientId = html.window.document.querySelector("meta[name='naver-login-client-id']")
                     ?.getAttribute("content");
