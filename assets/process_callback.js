@@ -1,16 +1,15 @@
-var process_callback = function() {
-    var _clientId = window.document.querySelector("meta[name='naver-login-client-id']")
-                        .getAttribute("content");
-    var _callbackUrl = window.document.querySelector("meta[name='naver-login-callback-url']")
-                        .getAttribute("content");
-                        
-    var nil = new naver_id_login(_clientId, _callbackUrl);
+var _clientId = window.document.querySelector("meta[name='naver-login-client-id']")
+                    .getAttribute("content");
+var _callbackUrl = window.document.querySelector("meta[name='naver-login-callback-url']")
+                    .getAttribute("content");
+var nil = new naver_id_login(_clientId, _callbackUrl);
 
+var process_callback = function() {
     nil.init_naver_id_login_callback();  console.log("after init_naver_login_callback");
-    nil.get_naver_userprofile("jsCallback(nil)");
+    nil.get_naver_userprofile("jsCallback()");
 }
 
-var jsCallback = function(nil) {
+var jsCallback = function() {
     console.log(nil.getProfileData('age'));
 
     var opener = window.opener;
