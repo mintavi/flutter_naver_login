@@ -7,10 +7,10 @@ var process_callback = function() {
     var nil = new naver_id_login(_clientId, _callbackUrl);
 
     nil.init_naver_id_login_callback();  console.log("after init_naver_login_callback");
-    nil.get_naver_userprofile("jsCallback()");
+    nil.get_naver_userprofile("jsCallback(nil)");
 }
 
-var jsCallback = function() {
+var jsCallback = function(nil) {
     console.log(nil.getProfileData('age'));
 
     var opener = window.opener;
