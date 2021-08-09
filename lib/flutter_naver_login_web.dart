@@ -12,16 +12,13 @@ class FlutterNaverLoginPlugin {
   static initialize() async {
     const String jQueryUrl = 'http://code.jquery.com/jquery-1.11.3.min.js';
     const String naverApiUrl = 'https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js';
-    const String processCallbackUrl = 'assets/packages/flutter_naver_login/assets/process_callback.js';
-    
-    await injectJSLibraries([jQueryUrl, naverApiUrl, processCallbackUrl]);
+        
+    await injectJSLibraries([jQueryUrl, naverApiUrl]);
 
     _clientId = html.window.document.querySelector("meta[name='naver-login-client-id']")
                     ?.getAttribute("content");
     _callbackUrl = html.window.document.querySelector("meta[name='naver-login-callback-url']")
                     ?.getAttribute("content");
-    print("clientId: $_clientId");
-    print("callbackUrl: $_callbackUrl");
   }
 
   static void registerWith(Registrar registrar) async {
@@ -56,7 +53,6 @@ class FlutterNaverLoginPlugin {
 
   Future<dynamic> _logIn() {
     // TODO: turn this into .js file and simplify java interop?
-    print("in _logIn");
     var naverIdLogin = new naver_id_login(_clientId!, _callbackUrl!);
     var state = naverIdLogin.getUniqState();
     naverIdLogin.setDomain(html.window.location.href);
@@ -68,11 +64,8 @@ class FlutterNaverLoginPlugin {
     
     final html.WindowBase popup = html.window.open(
         loginUrl, 'naverloginpop', 'titlebar=1, resizable=1, scrollbars=yes, width=600, height=550');
-    
-    print("popup");
-    print(popup);
+
     html.window.addEventListener("message", (e) {
-      print("in addEventListener");
       print(e);
       result.complete(e);
     });

@@ -10,28 +10,32 @@ var process_callback = function() {
 }
 
 var jsCallback = function() {
-    console.log(nil.getProfileData('age'));
-
     var opener = window.opener;
     if (opener == null) {
         window.open("http://localhost:10000/#/login", "opener");
     }
-    
-    var result = {
-        "status": nil.getOauthStatus(),
-        "accessToken": nil.getAccessToken(),
+
+    var result =
+    {
+        "status": "loggedIn",
+        "accessToken":
+        {
+            "accessToken": nil.getAccessToken(),
+            "expiresAt": nil.oauthParams.expires_in,
+            "tokenType": nil.oauthParams.token_type,
+        },
         "errorMessage": nil.getOauthMessage(),
-        "account": nil.inner_profileParams,
-        // {
-            // "age": nil.getProfileData("age"),
-            // "birthday": nil.getProfileData("birthday"),
-            // "email": nil.getProfileData("email"),
-            // "enc_id": nil.getProfileData("enc_id"),
-            // "gender": nil.getProfileData("gender"),
-            // "id": nil.getProfileData("id"),
-            // "nickname": nil.getProfileData("nickname"),
-            // "profile_image": nil.getProfileData("profile_image"),
-        // },
+        "account":
+            {
+                "age": nil.getProfileData("age"),
+                "birthday": nil.getProfileData("birthday"),
+                "email": nil.getProfileData("email"),
+                "enc_id": nil.getProfileData("enc_id"),
+                "gender": nil.getProfileData("gender"),
+                "id": nil.getProfileData("id"),
+                "nickname": nil.getProfileData("nickname"),
+                "profile_image": nil.getProfileData("profile_image"),
+            },
     }
     
     opener.postMessage(result, "http://localhost:10000/#/login");
