@@ -78,6 +78,12 @@ class FlutterNaverLoginPlugin {
     const String logoutUrl = "http://nid.naver.com/nidlogin.logout?";
     var logoutWindow = html.window.open(logoutUrl, 'new tab');
     logoutWindow.close();
+
+    var result =
+      {
+          "status": "loggedIn",
+      };
+    return result;
   }
 
   _getCurrentAccount() {
