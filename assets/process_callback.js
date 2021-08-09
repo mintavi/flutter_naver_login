@@ -12,7 +12,7 @@ var process_callback = function() {
 var jsCallback = function() {
     var opener = window.opener;
     if (opener == null) {
-        window.open("http://localhost:10000/#/login", "opener");
+        window.open(html.window.location.origin, "opener");
     }
 
     var result =
@@ -32,6 +32,6 @@ var jsCallback = function() {
         "profile_image": nil.getProfileData("profile_image"),
     }
 
-    opener.postMessage(result, "http://localhost:10000/#/login");
+    opener.postMessage(result, opener.location.href);
     window.close();
 }
