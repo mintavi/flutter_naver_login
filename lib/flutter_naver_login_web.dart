@@ -78,16 +78,34 @@ class FlutterNaverLoginPlugin {
 
   _logOut() {
     print("in _logOut");
-    const String logoutUrl = "http://nid.naver.com/nidlogin.logout?";
-    var logoutWindow = html.window.open(logoutUrl, 'new tab');
-    logoutWindow.close();
+    // const String logoutUrl = "http://nid.naver.com/nidlogin.logout?";
+    // var logoutWindow = html.window.open(logoutUrl, 'new tab');
+    // logoutWindow.close();
   }
 
   _getCurrentAccount() {
-
+    var nil = new naver_id_login(_clientId!, _callbackUrl!);
+    var result =
+    {
+        "status": "loggedIn",
+        "accessToken": nil.getAccessToken(),
+        "expiresAt": nil.oauthParams.expires_in,
+        "tokenType": nil.oauthParams.token_type,
+        "errorMessage": "",
+        "age": nil.getProfileData("age"),
+        "birthday": nil.getProfileData("birthday"),
+        "email": nil.getProfileData("email"),
+        "enc_id": nil.getProfileData("enc_id"),
+        "gender": nil.getProfileData("gender"),
+        "id": nil.getProfileData("id"),
+        "nickname": nil.getProfileData("nickname"),
+        "profile_image": nil.getProfileData("profile_image"),
+    };
+    return result;
   }
 
   _getCurrentAccessToken() {
-
+    var naverIdLogin = new naver_id_login(_clientId!, _callbackUrl!);
+    return naverIdLogin.getAccessToken();
   }
 }

@@ -12,6 +12,7 @@ class naver_id_login {
   external dynamic get oAuthParams;
   external bool get is_callback;
   external String get client_id;
+  external dynamic get oauthParams;
 
   external String getAccessToken();
   

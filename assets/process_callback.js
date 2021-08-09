@@ -33,5 +33,5 @@ var jsCallback = function() {
     }
     
     opener.postMessage(result, "http://localhost:10000/#/login");
-    window.close();
+    // window.close();
 }
