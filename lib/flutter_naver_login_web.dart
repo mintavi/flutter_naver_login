@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:html' as html;
+import 'dart:js_util';
 import 'package:flutter/services.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'web/inject_js_libraries.dart';
@@ -60,14 +61,16 @@ class FlutterNaverLoginPlugin {
 
     String loginUrl = naverIdLogin.getNaverIdLoginLink();
 
-    Completer<dynamic> result = new Completer<dynamic>();
-    
+
+    Completer<Map<dynamic, dynamic>> result = new Completer<Map<dynamic, dynamic>>();
+
     final html.WindowBase popup = html.window.open(
         loginUrl, 'naverloginpop', 'titlebar=1, resizable=1, scrollbars=yes, width=600, height=550');
 
     html.window.addEventListener("message", (e) {
-      print(e);
-      result.complete(e);
+      result.complete(
+        (e as html.MessageEvent).data
+      );
     });
     
     return result.future;
