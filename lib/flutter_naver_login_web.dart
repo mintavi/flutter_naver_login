@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:html' as html;
-import 'dart:js_util';
 import 'package:flutter/services.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'web/inject_js_libraries.dart';
@@ -39,10 +38,10 @@ class FlutterNaverLoginPlugin {
         return _logIn();
       case "logOut":
         return _logOut();
-      case "getCurrentAccount":
-        return _getCurrentAccount();
-      case "getCurrentAccessToken":
-        return _getCurrentAccessToken();
+      // case "getCurrentAccount":
+      //   return _getCurrentAccount();
+      // case "getCurrentAccessToken":
+      //   return _getCurrentAccessToken();
       default:
         throw PlatformException(
           code: 'Unimplemented',
@@ -56,16 +55,14 @@ class FlutterNaverLoginPlugin {
     // TODO: turn this into .js file and simplify java interop?
     var naverIdLogin = new naver_id_login(_clientId!, _callbackUrl!);
     var state = naverIdLogin.getUniqState();
-    naverIdLogin.setDomain(html.window.location.href);
+    naverIdLogin.setDomain(html.window.location.hostname!);
     naverIdLogin.setState(state);
-
-    String loginUrl = naverIdLogin.getNaverIdLoginLink();
-
 
     Completer<Map<dynamic, dynamic>> result = new Completer<Map<dynamic, dynamic>>();
 
-    final html.WindowBase popup = html.window.open(
-        loginUrl, 'naverloginpop', 'titlebar=1, resizable=1, scrollbars=yes, width=600, height=550');
+
+    String loginUrl = naverIdLogin.getNaverIdLoginLink();
+    final html.WindowBase popup = html.window.open(loginUrl, '_blank');
 
     html.window.addEventListener("message", (e) {
       result.complete(
@@ -78,34 +75,34 @@ class FlutterNaverLoginPlugin {
 
   _logOut() {
     print("in _logOut");
-    // const String logoutUrl = "http://nid.naver.com/nidlogin.logout?";
-    // var logoutWindow = html.window.open(logoutUrl, 'new tab');
-    // logoutWindow.close();
+    const String logoutUrl = "http://nid.naver.com/nidlogin.logout?";
+    var logoutWindow = html.window.open(logoutUrl, 'new tab');
+    logoutWindow.close();
   }
 
   _getCurrentAccount() {
-    var nil = new naver_id_login(_clientId!, _callbackUrl!);
-    var result =
-    {
-        "status": "loggedIn",
-        "accessToken": nil.getAccessToken(),
-        "expiresAt": nil.oauthParams.expires_in,
-        "tokenType": nil.oauthParams.token_type,
-        "errorMessage": "",
-        "age": nil.getProfileData("age"),
-        "birthday": nil.getProfileData("birthday"),
-        "email": nil.getProfileData("email"),
-        "enc_id": nil.getProfileData("enc_id"),
-        "gender": nil.getProfileData("gender"),
-        "id": nil.getProfileData("id"),
-        "nickname": nil.getProfileData("nickname"),
-        "profile_image": nil.getProfileData("profile_image"),
-    };
-    return result;
+    // var nil = new naver_id_login(_clientId!, _callbackUrl!);
+    // var result =
+    // {
+    //     "status": "loggedIn",
+    //     "accessToken": nil.getAccessToken(),
+    //     "expiresAt": nil.oauthParams.expires_in,
+    //     "tokenType": nil.oauthParams.token_type,
+    //     "errorMessage": "",
+    //     "age": nil.getProfileData("age"),
+    //     "birthday": nil.getProfileData("birthday"),
+    //     "email": nil.getProfileData("email"),
+    //     "enc_id": nil.getProfileData("enc_id"),
+    //     "gender": nil.getProfileData("gender"),
+    //     "id": nil.getProfileData("id"),
+    //     "nickname": nil.getProfileData("nickname"),
+    //     "profile_image": nil.getProfileData("profile_image"),
+    // };
+    // return result;
   }
 
   _getCurrentAccessToken() {
-    var naverIdLogin = new naver_id_login(_clientId!, _callbackUrl!);
-    return naverIdLogin.getAccessToken();
+    // var naverIdLogin = new naver_id_login(_clientId!, _callbackUrl!);
+    // return naverIdLogin.getAccessToken();
   }
 }

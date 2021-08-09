@@ -31,7 +31,7 @@ var jsCallback = function() {
         "nickname": nil.getProfileData("nickname"),
         "profile_image": nil.getProfileData("profile_image"),
     }
-    
+
     opener.postMessage(result, "http://localhost:10000/#/login");
-    // window.close();
+    window.close();
 }
