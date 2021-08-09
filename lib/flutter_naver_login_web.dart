@@ -10,7 +10,7 @@ class FlutterNaverLoginPlugin {
   static late final String? _callbackUrl;
 
   static initialize() async {
-    const String jQueryUrl = 'http://code.jquery.com/jquery-1.11.3.min.js';
+    const String jQueryUrl = 'https://code.jquery.com/jquery-1.11.3.min.js';
     const String naverApiUrl = 'https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js';
         
     await injectJSLibraries([jQueryUrl, naverApiUrl]);
