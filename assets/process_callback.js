@@ -18,27 +18,20 @@ var jsCallback = function() {
     var result =
     {
         "status": "loggedIn",
-        "accessToken":
-        {
-            "accessToken": nil.getAccessToken(),
-            "expiresAt": nil.oauthParams.expires_in,
-            "tokenType": nil.oauthParams.token_type,
-        },
-        "errorMessage": nil.getOauthMessage(),
-        "account":
-            {
-                "age": nil.getProfileData("age"),
-                "birthday": nil.getProfileData("birthday"),
-                "email": nil.getProfileData("email"),
-                "enc_id": nil.getProfileData("enc_id"),
-                "gender": nil.getProfileData("gender"),
-                "id": nil.getProfileData("id"),
-                "nickname": nil.getProfileData("nickname"),
-                "profile_image": nil.getProfileData("profile_image"),
-            },
+        "accessToken": nil.getAccessToken(),
+        "expiresAt": nil.oauthParams.expires_in,
+        "tokenType": nil.oauthParams.token_type,
+        "errorMessage": "",
+        "age": nil.getProfileData("age"),
+        "birthday": nil.getProfileData("birthday"),
+        "email": nil.getProfileData("email"),
+        "enc_id": nil.getProfileData("enc_id"),
+        "gender": nil.getProfileData("gender"),
+        "id": nil.getProfileData("id"),
+        "nickname": nil.getProfileData("nickname"),
+        "profile_image": nil.getProfileData("profile_image"),
     }
     
     opener.postMessage(result, "http://localhost:10000/#/login");
-    // opener.postMessage(result, "*");
-    // window.close();
+    window.close();
 }
