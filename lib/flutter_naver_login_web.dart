@@ -51,7 +51,7 @@ class FlutterNaverLoginPlugin {
     }
   }
 
-  Future<dynamic> _logIn() {
+  Future<Map<dynamic, dynamic>> _logIn() {
     // TODO: turn this into .js file and simplify java interop?
     var naverIdLogin = new naver_id_login(_clientId!, _callbackUrl!);
     var state = naverIdLogin.getUniqState();
@@ -73,13 +73,13 @@ class FlutterNaverLoginPlugin {
     return result.future;
   }
 
-  _logOut() {
+  Map<dynamic, dynamic> _logOut() {
     print("in _logOut");
-    const String logoutUrl = "http://nid.naver.com/nidlogin.logout?";
+    const String logoutUrl = "https://nid.naver.com/nidlogin.logout?";
     var logoutWindow = html.window.open(logoutUrl, 'new tab');
     logoutWindow.close();
 
-    var result =
+    Map<dynamic, dynamic> result =
       {
           "status": "loggedIn",
       };
