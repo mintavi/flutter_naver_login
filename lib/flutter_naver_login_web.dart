@@ -65,9 +65,11 @@ class FlutterNaverLoginPlugin {
     final html.WindowBase popup = html.window.open(loginUrl, '_blank');
 
     html.window.addEventListener("message", (e) {
-      result.complete(
-        (e as html.MessageEvent).data
-      );
+      if (!result.isCompleted) {
+        result.complete(
+          (e as html.MessageEvent).data
+        );
+      } else {print("completer already completed!");}
     });
     
     return result.future;
