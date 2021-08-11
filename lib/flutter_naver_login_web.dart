@@ -55,7 +55,7 @@ class FlutterNaverLoginPlugin {
     // TODO: turn this into .js file and simplify java interop?
     var naverIdLogin = new naver_id_login(_clientId!, _callbackUrl!);
     var state = naverIdLogin.getUniqState();
-    naverIdLogin.setDomain(html.window.location.hostname!);
+    naverIdLogin.setDomain(".rftap.net");
     naverIdLogin.setState(state);
 
     Completer<Map<dynamic, dynamic>> result = new Completer<Map<dynamic, dynamic>>();
